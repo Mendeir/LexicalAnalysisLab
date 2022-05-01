@@ -8,7 +8,9 @@ string retrieveFile(string sourceFile);
 
 int main() {
 
-    cout << retrieveFile("code.txt");
+    string fileName = "code.txt";
+    string code = retrieveFile(fileName);
+    cout << code;
 
     return 0;
 }
