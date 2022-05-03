@@ -46,17 +46,17 @@ void tokenize (string givenString) {
 
     while (counter <= stringLength) {
         if (givenString[counter] == ' ') {
-            if (subString != " ") {
+            if (subString != "") {
                 evaluateToken(subString);
-                subString = " ";
+                subString = "";
             }
 
             ++counter;
             continue;
         }
 
-        if (false) {
-            cout << givenString[counter] << " is a punctuator." << '\n';
+        if (isPunctuator(givenString, counter)) {
+            cout << "'" << givenString[counter] << " is a punctuator." << '\n';
         } else {
             subString += givenString[counter];
         }
