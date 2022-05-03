@@ -44,6 +44,11 @@ void tokenize (string givenString) {
     int counter = 0;
     string subString = "";
 
+    if (givenString == "") {
+        cout << "File is empty!" << '\n';
+        return;
+    }
+
     while (counter <= stringLength) {
         if (givenString[counter] == ' ') {
             if (subString != "") {
