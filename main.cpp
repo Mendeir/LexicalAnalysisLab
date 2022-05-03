@@ -56,7 +56,7 @@ void tokenize (string givenString) {
         }
 
         if (isPunctuator(givenString, counter)) {
-            cout << "'" << givenString[counter] << " is a punctuator." << '\n';
+            cout << "'" << givenString[counter] << "'" << " is a punctuator." << '\n';
         } else {
             subString += givenString[counter];
         }
