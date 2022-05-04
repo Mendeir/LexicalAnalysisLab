@@ -10,4 +10,6 @@ int main() {
     cout << d;
     return 0;
     const_cast
+    double 1count
+    float $counter
 }

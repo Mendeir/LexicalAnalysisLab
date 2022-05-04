@@ -11,6 +11,8 @@ void dispPunctuators(string code);
 void displayOperator(vector<string> values);
 bool isPunctuator(string code, int i);
 bool isKeyword(string token);
+bool isIdentifier(string code);
+bool punctuatorsIndentifier(char letter);
 vector<string> isOperator(string code);
 
 int main() {
@@ -85,7 +87,7 @@ void tokenize (string givenString) {
             continue;
         }
 
-        if (isPunctuator(givenString, counter)) {
+       if (isPunctuator(givenString, counter)) {
             cout << "'" << givenString[counter] << "'" << " is a punctuator." << '\n';
         } else {
             subString += givenString[counter];
@@ -108,7 +110,7 @@ void evaluateToken (string givenString) {
         return;
     } 
 
-    if (false) {
+    if (isIdentifier(givenString)) {
         cout << "'" << givenString << "'" << " is an identifier." << '\n';
         return;
     } 
@@ -424,4 +426,39 @@ vector<string> isOperator(string code){
         operators.push_back("throw");
     }
     return operators;
+}
+
+bool isIdentifier(string code){
+    int length = code.length();
+    int counter = 0;
+    
+    if(isdigit(code[0]) || punctuatorsIndentifier(code[0]) == true || code == "std" || code == "include" || code == "iostream"){ // check if it starts with a digit or special characters
+        return false;
+    }
+
+    if(length == 1){ 
+        return true;
+    }else{
+        for(counter; counter < length; counter++){               // iterate through the word and check for special characters
+            if (punctuatorsIndentifier(code[counter]) == true){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool punctuatorsIndentifier(char letter){
+    char punctOperators[25] = {'+' , '-' , '*' ,'/' , '>' ,
+                               '<' ,'=' , '|' , '&' ,'+' ,
+                               '|' , '*' , '/' , ',' ,'$' ,
+                               ';' , '>' , '<' , '=' , '(' ,
+                               ')' , '[' , ']' , '{' , '}' ,
+                               } ;
+    for(int iterator = 0; iterator <= 25; iterator++){
+        if(letter == punctOperators[iterator]){
+            return true;
+        }
+    }
+    return false;
 }
