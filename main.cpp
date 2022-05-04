@@ -5,12 +5,12 @@
 using namespace std;
 
 string retrieveFile (string sourceFile);
-bool isKeyword(string token);
 void tokenize (string givenString);
 void evaluateToken (string givenString);
-bool isPunctuator(string code, int i);
 void dispPunctuators(string code);
 void displayOperator(vector<string> values);
+bool isPunctuator(string code, int i);
+bool isKeyword(string token);
 vector<string> isOperator(string code);
 
 int main() {
@@ -98,18 +98,18 @@ void tokenize (string givenString) {
 }
 
 void evaluateToken (string givenString) {
-    if (false) {
+     if (false) {
+        cout << "'" << givenString << "'" << " is an operator." << '\n';
+        return;
+    } 
+
+    if (isKeyword(givenString)) {
         cout << "'" << givenString << "'" << " is a keyword." << '\n';
         return;
     } 
 
     if (false) {
         cout << "'" << givenString << "'" << " is an identifier." << '\n';
-        return;
-    } 
-
-    if (false) {
-        cout << "'" << givenString << "'" << " is an operator." << '\n';
         return;
     } 
 
