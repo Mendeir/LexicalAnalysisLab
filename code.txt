@@ -8,6 +8,7 @@ int main() {
     c = 3;
     d = a + b + c;
     cout << d;
+    >>=
     return 0;
     const_cast
 }

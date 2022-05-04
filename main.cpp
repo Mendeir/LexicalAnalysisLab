@@ -8,10 +8,9 @@ string retrieveFile (string sourceFile);
 void tokenize (string givenString);
 void evaluateToken (string givenString);
 void dispPunctuators(string code);
-void displayOperator(vector<string> values);
 bool isPunctuator(string code, int i);
 bool isKeyword(string token);
-vector<string> isOperator(string code);
+bool isOperator(string code);
 
 int main() {
     string fileName = "code.txt";
@@ -98,7 +97,7 @@ void tokenize (string givenString) {
 }
 
 void evaluateToken (string givenString) {
-     if (false) {
+     if (isOperator(givenString)) {
         cout << "'" << givenString << "'" << " is an operator." << '\n';
         return;
     } 
@@ -254,174 +253,167 @@ bool isPunctuator(string code, int i){
     }
 }
 
-void displayOperator(vector<string> values){
-    // display the operator values inside the vector
-    for(int i = 0; i< values.size(); i++){
-        cout << values[i] << " is an operator" << endl;
-    }
-}
-
-vector<string> isOperator(string code){
-    // creating a vector to store operation elements
-    vector<string> operators;
+bool isOperator(string code){
+    
     // check each character in the text file for operations symbols
     for(int i = 0; i< code.length();i++){
         if(code[i] == '+'){
-            operators.push_back("+");
+            return true;
         }
         if(code[i] == '-'){
-            operators.push_back("-");
+            return true;
         }
         if(code[i] == '&'){
-            operators.push_back("&");
+            return true;
         }
         if(code[i] == '*'){
-            operators.push_back("*");
+            return true;
         }
         if(code[i] == '!'){
-            operators.push_back("!");
+            return true;
         }
         if(code[i] == '~'){
-            operators.push_back("~");
+            return true;
         }
         if(code[i] == '<'){
-            operators.push_back("<");
+            return true;
         }
         if(code[i] == '>'){
-            operators.push_back(">");
+            return true;
         }
         if(code[i] == '|'){
-            operators.push_back("|");
+            return true;
         }
         if(code[i] == '^'){
-            operators.push_back("^");
+            return true;
         }
         if(code[i] == '%'){
-            operators.push_back("%");
+            return true;
         }
         if(code[i] == '.'){
-            operators.push_back(".");
+            return true;
         }
         if(code[i] == ','){
-            operators.push_back(".");
+            return true;
         }
         if(code[i] == '='){
-            operators.push_back("=");
+            return true;
         }
         if(code[i] == '/'){
-            operators.push_back("/");
+            return true;
         }
         if(code[i] == ':' && code[i+1] == ':'){
-            operators.push_back("::");
+            return true;
         }
         if(code[i] == '-' && code[i+1] == '>'){
-            operators.push_back("->");
+            return true;
         }
         if(code[i] == '[' && code[i+1] == ']'){
-            operators.push_back("[]");
+            return true;
         }
         if(code[i] == '(' && code[i+1] == ')'){
-            operators.push_back("()");
+            return true;
         }
         if(code[i] == '+' && code[i+1] == '+'){
-            operators.push_back("++");
+            return true;
         }
         if(code[i] == '-' && code[i+1] == '-'){
-            operators.push_back("--");
+            return true;
         }
         if(code[i] == '.' && code[i+1] == '*'){
-            operators.push_back(".*");
+            return true;
         }
         if(code[i] == '<' && code[i+1] == '<'){
-            operators.push_back("<<");
+            return true;
         }
         if(code[i] == '>' && code[i+1] == '>'){
-            operators.push_back(">>");
+            return true;
         }
         if(code[i] == '<' && code[i+1] == '='){
-            operators.push_back("<=");
+            return true;
         }
         if(code[i] == '>' && code[i+1] == '='){
-            operators.push_back(">=");
+            return true;
         }
         if(code[i] == '=' && code[i+1] == '='){
-            operators.push_back("==");
+            return true;
         }
         if(code[i] == '!' && code[i+1] == '='){
-            operators.push_back("!=");
+            return true;
         }
         if(code[i] == '&' && code[i+1] == '&'){
-            operators.push_back("&&");
+            return true;
         }
         if(code[i] == '|' && code[i+1] == '|'){
-            operators.push_back("||");
+            return true;
         }
         if(code[i] == '?' && code[i+1] == ':'){
-            operators.push_back("?:");
+            return true;
         }
         if(code[i] == '*' && code[i+1] == '='){
-            operators.push_back("*=");
+            return true;
         }
         if(code[i] == '/' && code[i+1] == '='){
-            operators.push_back("/=");
+            return true;
         }
         if(code[i] == '%' && code[i+1] == '='){
-            operators.push_back("%=");
+            return true;
         }
         if(code[i] == '+' && code[i+1] == '='){
-            operators.push_back("+=");
+            return true;
         }
         if(code[i] == '-' && code[i+1] == '='){
-            operators.push_back("-=");
+            return true;
         }
         if(code[i] == '&' && code[i+1] == '='){
-            operators.push_back("&=");
+            return true;
         }
         if(code[i] == '|' && code[i+1] == '='){
-            operators.push_back("|=");
+            return true;
         }
         if(code[i] == '^' && code[i+1] == '='){
-            operators.push_back("^=");
+            return true;
         }
         if(code[i] == '-' && code[i+1] == '>' && code[i+1] == '*'){
-            operators.push_back("->*");
+            return true;
         }
         if(code[i] == '<' && code[i+1] == '<' && code[i+1] == '='){
-            operators.push_back("<<=");
+            return true;
         }
         if(code[i] == '>' && code[i+1] == '>' && code[i+1] == '='){
-            operators.push_back(">>=");
+            return true;
         }
-        
         
     }
     // check each character in the text file for operations key words
     if(code.find("typeid") < code.length()){
-        operators.push_back("typeid");
+        return true;
     }
     if(code.find("const_cast") < code.length()){
-        operators.push_back("const_cast");
+        return true;
     }
     if(code.find("dynamic_cast") < code.length()){
-        operators.push_back("dynamic_cast");
+        return true;
     }
     if(code.find("reinterpret_cast") < code.length()){
-        operators.push_back("reinterpret_cast");
+        return true;
     }
     if(code.find("static_cast") < code.length()){
-        operators.push_back("static_cast");
+        return true;
     }
     if(code.find("sizeof") < code.length()){
-        operators.push_back("sizeof");
+        return true;
     }
     if(code.find("new") < code.length()){
-        operators.push_back("new");
+        return true;
     }
     if(code.find("delete") < code.length()){
-        operators.push_back("delete");
+        return true;
     }
     if(code.find("throw") < code.length()){
-        operators.push_back("throw");
+        return true;
     }
-    return operators;
+
+    return false;
 }
+
