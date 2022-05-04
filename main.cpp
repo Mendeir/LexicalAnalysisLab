@@ -103,7 +103,7 @@ void evaluateToken (string givenString) {
         return;
     } 
 
-    if (false) {
+    if (isKeyword(givenString)) {
         cout << "'" << givenString << "'" << " is a keyword." << '\n';
         return;
     } 
