@@ -75,29 +75,31 @@ void tokenize (string givenString) {
     }
 
     while (counter <= stringLength) {
-        if (givenString[counter] == ' ' || isSymbol(givenString[counter])) {
-        
+        if (givenString[counter] == ' ') {
             if (subString != "") {
                 evaluateToken(subString);
                 subString = "";
-
-                if (!isSymbol(givenString[counter])) {
-                     ++counter;
-                    continue;
-                }
             }
+
+            ++counter;
+            continue;
         }
 
         if (isPunctuator(givenString, counter)) {
             cout << "'" << givenString[counter] << "'" << " is a punctuator." << '\n';
+        } else if (isSymbol(givenString[counter])) {
+            if (subString != "" && !isSymbol(subString[0])) {
+                evaluateToken(subString);
+                subString = "";
+            }
+            subString += givenString[counter];
         } else {
             subString += givenString[counter];
         }
 
         ++counter;
     }
-}
-
+} 
 
 void evaluateToken (string givenString) {
      if (isOperator(givenString)) {
