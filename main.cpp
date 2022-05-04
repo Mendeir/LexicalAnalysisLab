@@ -432,7 +432,7 @@ bool isIdentifier(string code){
     int length = code.length();
     int counter = 0;
     
-    if(isdigit(code[0]) || punctuatorsIndentifier(code[0]) == true || code == "std" || code == "include" || code == "iostream"){ // check if it starts with a digit or special characters
+    if(isdigit(code[0]) || punctuatorsIndentifier(code[0]) == true){ // check if it starts with a digit or special characters
         return false;
     }
 
