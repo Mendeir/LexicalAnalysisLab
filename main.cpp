@@ -77,7 +77,9 @@ void tokenize (string givenString) {
     }
 
     while (counter <= stringLength) {
-        if (givenString[counter] == ' ') {
+        if (isPunctuator(givenString, counter)) {
+            cout << "'" << givenString[counter] << "'" << " is a punctuator." << '\n';
+
             if (subString != "") {
                 evaluateToken(subString);
                 subString = "";
@@ -85,11 +87,19 @@ void tokenize (string givenString) {
 
             ++counter;
             continue;
+        } 
+
+        if (givenString[counter] == ' ') {
+            if (subString != "") {
+                evaluateToken(subString);
+                subString = "";
+            }
+            ++counter;
+            continue;
+            
         }
 
-       if (isPunctuator(givenString, counter)) {
-            cout << "'" << givenString[counter] << "'" << " is a punctuator." << '\n';
-        } else if (isSymbol(givenString[counter])) {
+       if (isSymbol(givenString[counter])) {
             if (subString != "" && !isSymbol(subString[0])) {
                 evaluateToken(subString);
                 subString = "";
@@ -135,7 +145,7 @@ void dispPunctuators(string code){
 bool isSymbol(char givenChar) {
     if (givenChar == '+' || givenChar == '-' || givenChar == '!' || givenChar == '%' || 
         givenChar == '^' || givenChar == '&' || givenChar == '*' || givenChar == '~' ||
-        givenChar == '/')
+        givenChar == '/' || givenChar == ':' || givenChar == '<')
         return true;
 
     return false;
@@ -207,8 +217,6 @@ bool isPunctuator(string code, int i){
             return true;
         case ';':
             return true;
-        case '\'':
-            return true;
         case '?':
             if(code[i]=='?' && code[i+1]==':'){
                 return false;
@@ -219,8 +227,6 @@ bool isPunctuator(string code, int i){
             || (code[i-1]==':' && code[i]==':')){
                 return false;
             }
-            return true;
-        case '\"':
             return true;
         case ',':
             return true;
@@ -421,13 +427,13 @@ bool isIdentifier(string code){
 }
 
 bool punctuatorsIndentifier(char letter){
-    char punctOperators[25] = {'+' , '-' , '*' ,'/' , '>' ,
+    char punctOperators[27] = {'+' , '-' , '*' ,'/' , '>' ,
                                '<' ,'=' , '|' , '&' ,'+' ,
                                '|' , '*' , '/' , ',' ,'$' ,
                                ';' , '>' , '<' , '=' , '(' ,
                                ')' , '[' , ']' , '{' , '}' ,
-                               } ;
-    for(int iterator = 0; iterator <= 25; iterator++){
+                               '\'', '\"'} ;
+    for(int iterator = 0; iterator <= 27; iterator++){
         if(letter == punctOperators[iterator]){
             return true;
         }
