@@ -8,6 +8,7 @@ string retrieveFile (string sourceFile);
 void tokenize (string givenString);
 void evaluateToken (string givenString);
 void dispPunctuators(string code);
+bool isSymbol(char givenChar);
 bool isPunctuator(string code, int i);
 bool isKeyword(string token);
 bool isOperator(string code);
@@ -74,14 +75,17 @@ void tokenize (string givenString) {
     }
 
     while (counter <= stringLength) {
-        if (givenString[counter] == ' ') {
+        if (givenString[counter] == ' ' || isSymbol(givenString[counter])) {
+        
             if (subString != "") {
                 evaluateToken(subString);
                 subString = "";
-            }
 
-            ++counter;
-            continue;
+                if (!isSymbol(givenString[counter])) {
+                     ++counter;
+                    continue;
+                }
+            }
         }
 
         if (isPunctuator(givenString, counter)) {
@@ -92,9 +96,8 @@ void tokenize (string givenString) {
 
         ++counter;
     }
-
-
 }
+
 
 void evaluateToken (string givenString) {
      if (isOperator(givenString)) {
@@ -123,6 +126,15 @@ void dispPunctuators(string code){
                 cout << code[i] << " is a Punctuator\n";
             }
         }
+}
+
+bool isSymbol(char givenChar) {
+    if (givenChar == '+' || givenChar == '-' || givenChar == '!' || givenChar == '%' || 
+        givenChar == '^' || givenChar == '&' || givenChar == '*' || givenChar == '~' ||
+        givenChar == '/')
+        return true;
+
+    return false;
 }
 
 bool isPunctuator(string code, int i){
