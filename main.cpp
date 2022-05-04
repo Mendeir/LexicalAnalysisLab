@@ -164,6 +164,20 @@ bool isPunctuator(string code, int i){
             return true;
         case ')':
             return true;
+        case '-':
+            if((code[i]=='-' && code[i+1]=='=')
+            || (code[i]=='-' && code[i+1]=='-')
+            || (code[i-1]=='-' && code[i]=='-')){
+                return false;
+            }
+            return true;
+        case '+':
+            if((code[i]=='+' && code[i+1]=='=')
+            || (code[i]=='+' && code[i+1]=='+')
+            || (code[i-1]=='+' && code[i]=='+')){
+                return false;
+            }
+            return true;
         case '<':
             if((code[i]=='<' && code[i+1]=='=')
             || (code[i]=='<' && code[i+1]=='<')
