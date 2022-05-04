@@ -98,6 +98,11 @@ void tokenize (string givenString) {
 }
 
 void evaluateToken (string givenString) {
+     if (false) {
+        cout << "'" << givenString << "'" << " is an operator." << '\n';
+        return;
+    } 
+
     if (false) {
         cout << "'" << givenString << "'" << " is a keyword." << '\n';
         return;
@@ -105,11 +110,6 @@ void evaluateToken (string givenString) {
 
     if (false) {
         cout << "'" << givenString << "'" << " is an identifier." << '\n';
-        return;
-    } 
-
-    if (false) {
-        cout << "'" << givenString << "'" << " is an operator." << '\n';
         return;
     } 
 
