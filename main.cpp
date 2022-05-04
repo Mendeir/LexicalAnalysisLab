@@ -5,12 +5,12 @@
 using namespace std;
 
 string retrieveFile (string sourceFile);
-bool isKeyword(string token);
 void tokenize (string givenString);
 void evaluateToken (string givenString);
-bool isPunctuator(string code, int i);
 void dispPunctuators(string code);
 void displayOperator(vector<string> values);
+bool isPunctuator(string code, int i);
+bool isKeyword(string token);
 vector<string> isOperator(string code);
 
 int main() {
