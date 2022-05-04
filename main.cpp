@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <vector>
 using namespace std;
 
 string retrieveFile (string sourceFile);
@@ -9,6 +9,8 @@ void tokenize (string givenString);
 void evaluateToken (string givenString);
 bool isPunctuator(string code, int i);
 void dispPunctuators(string code);
+void displayOperator(vector<string> values);
+vector<string> isOperator(string code);
 
 int main() {
     string fileName = "code.txt";
@@ -227,4 +229,176 @@ bool isPunctuator(string code, int i){
         default:
             return false;
     }
+}
+
+void displayOperator(vector<string> values){
+    // display the operator values inside the vector
+    for(int i = 0; i< values.size(); i++){
+        cout << values[i] << " is an operator" << endl;
+    }
+}
+
+vector<string> isOperator(string code){
+    // creating a vector to store operation elements
+    vector<string> operators;
+    // check each character in the text file for operations symbols
+    for(int i = 0; i< code.length();i++){
+        if(code[i] == '+'){
+            operators.push_back("+");
+        }
+        if(code[i] == '-'){
+            operators.push_back("-");
+        }
+        if(code[i] == '&'){
+            operators.push_back("&");
+        }
+        if(code[i] == '*'){
+            operators.push_back("*");
+        }
+        if(code[i] == '!'){
+            operators.push_back("!");
+        }
+        if(code[i] == '~'){
+            operators.push_back("~");
+        }
+        if(code[i] == '<'){
+            operators.push_back("<");
+        }
+        if(code[i] == '>'){
+            operators.push_back(">");
+        }
+        if(code[i] == '|'){
+            operators.push_back("|");
+        }
+        if(code[i] == '^'){
+            operators.push_back("^");
+        }
+        if(code[i] == '%'){
+            operators.push_back("%");
+        }
+        if(code[i] == '.'){
+            operators.push_back(".");
+        }
+        if(code[i] == ','){
+            operators.push_back(".");
+        }
+        if(code[i] == '='){
+            operators.push_back("=");
+        }
+        if(code[i] == '/'){
+            operators.push_back("/");
+        }
+        if(code[i] == ':' && code[i+1] == ':'){
+            operators.push_back("::");
+        }
+        if(code[i] == '-' && code[i+1] == '>'){
+            operators.push_back("->");
+        }
+        if(code[i] == '[' && code[i+1] == ']'){
+            operators.push_back("[]");
+        }
+        if(code[i] == '(' && code[i+1] == ')'){
+            operators.push_back("()");
+        }
+        if(code[i] == '+' && code[i+1] == '+'){
+            operators.push_back("++");
+        }
+        if(code[i] == '-' && code[i+1] == '-'){
+            operators.push_back("--");
+        }
+        if(code[i] == '.' && code[i+1] == '*'){
+            operators.push_back(".*");
+        }
+        if(code[i] == '<' && code[i+1] == '<'){
+            operators.push_back("<<");
+        }
+        if(code[i] == '>' && code[i+1] == '>'){
+            operators.push_back(">>");
+        }
+        if(code[i] == '<' && code[i+1] == '='){
+            operators.push_back("<=");
+        }
+        if(code[i] == '>' && code[i+1] == '='){
+            operators.push_back(">=");
+        }
+        if(code[i] == '=' && code[i+1] == '='){
+            operators.push_back("==");
+        }
+        if(code[i] == '!' && code[i+1] == '='){
+            operators.push_back("!=");
+        }
+        if(code[i] == '&' && code[i+1] == '&'){
+            operators.push_back("&&");
+        }
+        if(code[i] == '|' && code[i+1] == '|'){
+            operators.push_back("||");
+        }
+        if(code[i] == '?' && code[i+1] == ':'){
+            operators.push_back("?:");
+        }
+        if(code[i] == '*' && code[i+1] == '='){
+            operators.push_back("*=");
+        }
+        if(code[i] == '/' && code[i+1] == '='){
+            operators.push_back("/=");
+        }
+        if(code[i] == '%' && code[i+1] == '='){
+            operators.push_back("%=");
+        }
+        if(code[i] == '+' && code[i+1] == '='){
+            operators.push_back("+=");
+        }
+        if(code[i] == '-' && code[i+1] == '='){
+            operators.push_back("-=");
+        }
+        if(code[i] == '&' && code[i+1] == '='){
+            operators.push_back("&=");
+        }
+        if(code[i] == '|' && code[i+1] == '='){
+            operators.push_back("|=");
+        }
+        if(code[i] == '^' && code[i+1] == '='){
+            operators.push_back("^=");
+        }
+        if(code[i] == '-' && code[i+1] == '>' && code[i+1] == '*'){
+            operators.push_back("->*");
+        }
+        if(code[i] == '<' && code[i+1] == '<' && code[i+1] == '='){
+            operators.push_back("<<=");
+        }
+        if(code[i] == '>' && code[i+1] == '>' && code[i+1] == '='){
+            operators.push_back(">>=");
+        }
+        
+        
+    }
+    // check each character in the text file for operations key words
+    if(code.find("typeid") < code.length()){
+        operators.push_back("typeid");
+    }
+    if(code.find("const_cast") < code.length()){
+        operators.push_back("const_cast");
+    }
+    if(code.find("dynamic_cast") < code.length()){
+        operators.push_back("dynamic_cast");
+    }
+    if(code.find("reinterpret_cast") < code.length()){
+        operators.push_back("reinterpret_cast");
+    }
+    if(code.find("static_cast") < code.length()){
+        operators.push_back("static_cast");
+    }
+    if(code.find("sizeof") < code.length()){
+        operators.push_back("sizeof");
+    }
+    if(code.find("new") < code.length()){
+        operators.push_back("new");
+    }
+    if(code.find("delete") < code.length()){
+        operators.push_back("delete");
+    }
+    if(code.find("throw") < code.length()){
+        operators.push_back("throw");
+    }
+    return operators;
 }
