@@ -1,1 +1,16 @@
-a++
+#include <iostream>
+using namespace std;
+int main() {
+    a++;
+    b--;
+    int a, b, c, d;
+    a = 1;
+    b = 2;
+    c = 3;
+    d = a + b + c;
+    cout << d;
+    return 0;
+    const_cast
+    double 1count
+    float $counter
+}

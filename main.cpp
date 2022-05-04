@@ -146,21 +146,6 @@ bool isPunctuator(string code, int i){
         except exact matches (i.e. punctuator '^' vs bitwise or '^')
     */
     switch (code[i]){
-        case '!':
-            if(code[i]=='!' && code[i+1]=='='){
-                return false;
-            }
-            return true;
-        case '%':
-            if(code[i]=='%' && code[i+1]=='='){
-                return false;
-            }
-            return true;
-        case '^':
-            if(code[i]=='^' && code[i+1]=='='){
-                return false;
-            }
-            return true;
         case '&':
             if((code[i]=='&' && code[i+1]=='=')
             || (code[i]=='&' && code[i+1]=='&')
@@ -206,22 +191,9 @@ bool isPunctuator(string code, int i){
                 return false;
             }
             return true;
-        case '=':
-            if((code[i]=='=' && code[i+1]=='=')
-            || (code[i-1]=='=' && code[i]=='=')){
-                return false;
-            }
-            return true;
         case '{':
             return true;
         case '}':
-            return true;
-        case '|':
-            if((code[i]=='|' && code[i+1]=='=')
-            || (code[i]=='|' && code[i+1]=='|')
-            || (code[i-1]=='|' && code[i]=='|')){
-                return false;
-            }
             return true;
         case '~':
             return true;
@@ -252,11 +224,6 @@ bool isPunctuator(string code, int i){
             return true;
         case '.':
             if(code[i]=='.' && code[i+1]=='*'){
-                return false;
-            }
-            return true;
-        case '/':
-            if(code[i]=='/' && code[i+1]=='='){
                 return false;
             }
             return true;
