@@ -14,6 +14,7 @@ bool isKeyword(string token);
 bool isIdentifier(string code);
 bool punctuatorsIndentifier(char letter);
 bool isOperator(string code);
+string removeComments(string givenLine);
 
 int main() {
     string fileName = "code.txt";
@@ -37,7 +38,7 @@ string retrieveFile(string sourceFile) {
     string code = "";
 
     while (getline(codeFile, fileLine)) {
-        code += fileLine;
+        code += removeComments(fileLine);
         code += " ";
     }
 
@@ -439,4 +440,32 @@ bool punctuatorsIndentifier(char letter){
         }
     }
     return false;
+}
+
+string removeComments(string givenLine) {
+    bool singleLineFlag = false;
+    static bool multiLineFlag = false;
+    string newString = "";
+
+    for (int counter = 0; counter < givenLine.length(); ++counter) {
+        if (givenLine[counter] == '/' && givenLine[counter + 1] == '/')  {
+            singleLineFlag = true;
+            return newString;
+        }
+
+        if (givenLine[counter] == '/' && givenLine[counter + 1] == '*') {
+            multiLineFlag = true;
+        }   
+
+        if (givenLine[counter] == '*' && givenLine[counter + 1] == '/') {
+            multiLineFlag = false;
+            counter += 2;
+        }
+
+        if (singleLineFlag != true && multiLineFlag != true) {
+            newString += givenLine[counter];
+        }
+    }
+
+    return newString;
 }
